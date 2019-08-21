@@ -1,73 +1,89 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>Document Builder</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="../lib/foundation/css/foundation.css">
-    <link rel="stylesheet" href="../lib/foundation/css/app.css">
-    <link rel="stylesheet" href="../lib/foundation-icons/foundation-icons.css" />
+    <link rel="stylesheet" href="../lib/Material/css/custom.css">
     <link rel="stylesheet" href="./index.css">
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   </head>
+  
   <body>
     <div id="landingPanel" class="landingPanel">
-      <div id="landingGrid" class="grid-y" style="height:100%;">
-        <div class="cell medium-6">
-          <div class="landingIcon">
-            <img src="../img/CCD_Coin_Clean.png" alt="LA Distict Attorney's Office : Cyber Crime Division">
+      <div id="landingGrid">
+
+        <div class="row pb-3">
+          <div class="landingIcon col text-center px-0">
+              <img src="../img/CCD_Coin_Clean.png" alt="LA Distict Attorney's Office : Cyber Crime Division" class="img-fluid">
           </div>
         </div>
-        <div class="cell medium-1">
-          <div class="landingVersionAndCredits">
-            Search Warrant Builder v1.0.1, coded by Travis Kehrli
+
+        <div class="row pb-2">
+          <div class="landingVersionAndCredits col text-center h-100">
+            Search Warrant Builder v1.0.2
           </div>
         </div>
-        <div class="cell medium-2" style="text-align: center;">
-          <div class="landingConfig">
+
+        <div class="row pb-3">
+          <div class="landingConfig col text-center h-100">
             If you want to use your own configuration and template files (<a href="https://github.com/Tmktahu/DocumentBuilder">documentation</a>), select it here:
           </div>
-          <div class="selectFileWrapper">
-            <button class="selectConfigButton" onclick="selectConfigHandler()">Select Config File</button>
+        </div>
+
+        <div class="row pb-1">
+          <div class="selectFileWrapper col text-center">
+            <button class="selectConfigButton btn btn-outline-secondary" onclick="selectConfigHandler()">Select Config File</button>
             <div id="landingSelectedConfigPath" class="landingSelectedConfigPath"></div>
           </div>
-          <br>
-          <div class="selectFileWrapper">
-            <button class="selectConfigButton" onclick="selectTemplateHandler()">Select Template File</button>
+        </div>
+          
+        <div class="row pb-2">
+          <div class="selectFileWrapper col text-center">
+            <button class="selectConfigButton btn btn-outline-secondary" onclick="selectTemplateHandler()">Select Template File</button>
             <div id="landingSelectedTemplatePath" class="landingSelectedConfigPath"></div>
           </div>
         </div>
-        <div class="cell medium-auto" style="text-align: center;">
-          <button class="landingStartProgramButton" onclick="startProgramHandler()">Launch</button>
+
+        <div class="row">
+          <div class="col text-center">
+              <button class="landingStartProgramButton btn btn-primary btn-lg" onclick="startProgramHandler()">Launch</button>
+          </div>
         </div>
       </div>
     </div>
 
-    <div id="topGrid" class="grid-x">
-      <div class="cell medium-2 progressPane">
-        <div id="progressContent"></div>
-      </div>
-      <div class="cell medium-5 mainPane">
+      <div class="container-fluid">
+      <div id="topGrid">
+        <div class="row h-100">
+          <nav class="col progressPane nav flex-column nav-pills nav-stacked border-left">
+            <div id="progressContent"></div>
+          </nav>
 
-        <div class="grid-y" style="height:100%">
-          <div id="questionText" class="cell medium-2">
-            Question Text
+          <div class="col-6 mainPane">
+            <div id="questionText" class="row" style="height: 15%">
+            </div>
+            <div id="questionAnswer" class="row">
+            </div>
           </div>
-          <div id="questionAnswer" class="cell medium-auto">
+
+          <div class="col infoPane h-100">
+            <div id="helpPane">
+            </div>
           </div>
         </div>
       </div>
-      <div class="cell medium-auto infoPane" style="overflow-y: scroll;">
-        <div id="helpPane"></div>
-      </div>
     </div>
 
-    <script src="../lib/foundation/js/vendor/jquery.js"></script>
-    <script src="../lib/foundation/js/vendor/what-input.js"></script>
-    <script src="../lib/foundation/js/vendor/foundation.js"></script>
-    <script src="../lib/foundation/js/app.js"></script>
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
-    <script src="main.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="../lib/Material/js/material.min.js"></script>
+    <script type="text/javascript" src="./main.js"></script>
+
+    <script>if (window.module) module = window.module;</script>
   </body>
 </html>

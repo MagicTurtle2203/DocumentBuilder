@@ -1,6 +1,3 @@
-// This is the main js file that will control all the logic
-
-const { ipcRenderer } = require('electron');
 const { dialog } = require('electron').remote
 
 var core = {
@@ -13,8 +10,8 @@ var core = {
 
 var answerDiv = document.getElementById("questionAnswer");
 
-var JSZip = require('jszip');
-var Docxtemplater = require('docxtemplater');
+// var JSZip = require('jszip');
+// var Docxtemplater = require('docxtemplater');
 
 var fs = require('fs');
 var path = require('path');
@@ -22,7 +19,7 @@ var path = require('path');
 
 // on the landing panel, have a button where they can browse for a file
 function startProgramHandler() {
-	$('#landingPanel').fadeOut();
+	jQuery('#landingPanel').fadeOut();
 
 	if(configPath == "") {
 		configPath = "../config/sections.json";
@@ -97,7 +94,7 @@ function setup() {
 	searchWarrantScript();
 
 	// Set the height of the main window
-	$('#topGrid').height(window.innerHeight);
+    $('#topGrid').height(window.innerHeight);
 }
 
 function makeProgressPane() {
@@ -105,8 +102,8 @@ function makeProgressPane() {
 	for(i in core.sections) {
 		var sectionTitle = core.sections[i].sectionTitle;
 
-		var progressButton = document.createElement("button");
-		progressButton.className = "progressButton";
+		var progressButton = document.createElement("a");
+		progressButton.className = "progressButton nav-link";
 		progressButton.innerHTML = sectionTitle;
 		progressButton.id = i;
 		progressButton.name = sectionTitle + "_button";
@@ -119,7 +116,7 @@ function makeProgressPane() {
 
 function searchWarrantScript() {
 	// Toggle the first button visually
-	$('#'+core.currentSectionIndex).toggleClass('selected');
+	$('#'+core.currentSectionIndex).toggleClass('active');
 
 	// Load the current section
 	loadSection(core.currentSectionIndex, answerDiv);
@@ -339,8 +336,8 @@ function moreInfoButtonHandler() {
 
 function progressButtonHandler() {
 	var progressID = $(window.event.target)[0].id;
-	$('.selected').toggleClass('selected');
-	$(window.event.target).toggleClass('selected');
+	$('.active').toggleClass('active');
+	$(window.event.target).toggleClass('active');
 	saveInputs();
 
 	core.currentSectionIndex = progressID;
@@ -578,14 +575,14 @@ function loadHelpPane() {
 			if(sectionHelp[i].helpTitle != "") {
 				// Create and append a title section
 				var title = document.createElement('div');
-				title.className = "helpTitle";
+				title.className = "helpTitle h4";
 				title.innerHTML = sectionHelp[i].helpTitle;
 				$('#helpPane').append(title);
 			}
 
 			// Create and append a text section
 			var text = document.createElement('div');
-			text.className = "helpText";
+			text.className = "helpText pb-3";
 			text.innerHTML = sectionHelp[i].helpContent;
 			$('#helpPane').append(text);
 

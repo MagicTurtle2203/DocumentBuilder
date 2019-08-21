@@ -1,8 +1,8 @@
 {
   "name": "documentbuilder",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A highly configurable, interactive document preparation program.",
-  "author": "Travis Kehrli",
+  "author": "Travis Kehrli, Rafferty Chen",
   "main": "src/index.js",
   "scripts": {
     "start": "electron src/index.js",
@@ -21,18 +21,11 @@
   },
   "homepage": "https://github.com/Tmktahu/DocumentBuilder#readme",
   "devDependencies": {
-    "electron": "^4.0.4",
-    "electron-builder": "^20.39.0"
+    "electron": "^6.0.3",
+    "electron-builder": "^21.2.0"
   },
   "dependencies": {
-    "docxtemplater": "^3.9.9",
-    "jszip": "^2.6.1",
-    "markdown-it": "^8.4.2"
-  },
-  "build": {
-    "appId": "com.kehrli.documentBuilder",
-    "mac": {
-      "category": "public.app-category.developer-tools"
-    }
+    "docxtemplater": "^3.14.1",
+    "jzip": "^1.0.0"
   }
 }

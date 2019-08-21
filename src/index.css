@@ -1,200 +1,16 @@
+html,body {
+    height: 100%;
+  }
+
 body {
-	overflow: hidden;
-}
-
-.progressPane {
-	background-color: #5D5C61;
-}
-
-.mainPane {
-	background-color: #557A95;
-}
-
-.infoPane {
-	background-color: #7395AE;
-}
-
-#questionText {
-	font-family: "Open Sans";
-    font-size: 1.3em;
-    border-bottom: solid black;
-    padding-left: 10px;
-}
-
-#questionAnswer {
-	font-family: "Open Sans";
-    font-size: 1.2em;
-    padding-left: 10px;
-    padding-top: 10px;
-    overflow-y: scroll;
-}
-
-#progressContent {
-	font-family: "Open Sans";
-    font-size: 18px;
-    padding-left: 10px;
-}
-
-.singleLineInputField {
-    width: 97%;
-    height: 30px;
-}
-
-.singleLineInputFieldLabel {
-
-}
-
-.textBoxFieldInput {
-    width: 97%;
-    height: 300px;
-}
-
-.textBoxFieldInputLabel {
-    
-}
-
-.infoButton {
-    padding-right: 5px;
-}
-
-.infoIcon {
-    font-size: 25px;
-    color: #B1A296;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.25);
-}
-
-.infoIcon:hover {
-    font-size: 25px;
-    color: #90ce90;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.25);
-}
-
-.submitButton {
-    height: 50px;
-    width: 200px;
-    background-color: #B1A296;
-    float: right;
-    margin-right: 15px;
-    margin-bottom: 15px;
-    font-size: 22px;
-}
-
-.submitButton:hover {
-    background-color: #90ce90;
-}
-
-.questionYesButton {
-    background-color: #93cc93;
-    height: 40px;
-    width: 150px;
-    margin-left: 15px;
-    margin-bottom: 15px;
-    font-size: 22px;
-}
-
-.questionNoButton {
-    background-color: #ff6d6d;
-    height: 40px;
-    width: 150px;
-    margin-bottom: 15px;
-    font-size: 22px;
-}
-
-.questionButtonSelected {
-    border: 3px solid white;
-}
-
-.radioOption {
-    height: 20px;
-    width: 20px;
-    float: left;
-    margin: 0;
-    margin-top: 3px;
-}
-
-.radioOptionLabel {
-    padding-left: 25px;
-    padding-bottom: 5px;
-}
-
-.radioOptionWrapper {
-    clear: both;
-    margin-left: 20px;
-}
-
-.progressButton {
-    background-color: #557A95;
-    width: 90%;
-    margin-top: 5px;
-    font-size: 1em;
-    padding: 5px 5px 5px 5px;;
-}
-
-.progressButton:hover {
-    background-color: #7395AE;
-}
-
-.progressButton.selected {
-    background-color: #B1A296;
-}
-
-.moreInfoButton {
-    height: 40px;
-    width: 100%;
-    background-color: #B1A296;
-    margin-bottom: 15px;
-}
-
-#helpPane {
-    font-family: "Open Sans";
-    font-size: 18px;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.helpTitle {
-    font-size: 1.2em;
-    font-weight: bold;
-    border-bottom: solid 2px black;
-    margin: 5px 0 0 0;
-}
-
-.helpText {
-    text-indent: 20px;
-    margin: 5px 0px 5px 0px;
-}
-
-.insertButton {
-    float: left;
-    background: #B1A296;
-    padding: 5px 5px 5px 6px;
-}
-
-.insertButton:hover {
-    background-color: #efe0d4;
-}
-
-.insertText {
-    padding: 0px 0px 0px 60px;
-    font-size: 0.9em;
-    text-indent: 10px;
-}
-
-.insertWrapper {
-    margin: 15px 0px 15px 5px;
+    overflow: hidden;
 }
 
 .landingPanel {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: #7395AE;
-}
-
-.landingVersionAndCredits {
-    font-family: "Open Sans";
-    font-size: 1.3em;
-    text-align: center;
+    background: #FFFFFF;
 }
 
 .landingIcon {
@@ -202,50 +18,21 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 30px;
-}
-
-.landingConfig {
-    text-align: center;
-    font-family: "Open Sans";
-    font-size: 1.2em;
-}
-
-.landingStartProgramButton {
-    background: #B1A296;
-    padding: 5px 5px 5px 5px;
-    width: 300px;
-    font-size: 3em;
-    margin: 30px 0 0 0;;
-}
-
-.landingStartProgramButton:hover {
-    background-color: #90ce90;
+    margin-top: 20px;
 }
 
 .landingSelectedConfigPath {
-    font-size: 1.1em;
-    font-family: "Open Sans";
-    display: inline;
+    background-color: #eeeeee;
 }
 
-.selectConfigButton {
-    background: #B1A296;
-    padding: 5px 5px 5px 5px;
-    margin: 9px 0 0 0;
-    width: 190px;
-    height: 30px;
-    font-size: 1.2em;
+.landingSelectedTemplatePath {
+    background-color: #eeeeee;
 }
 
-.selectConfigButton:hover {
-    background-color: #efe0d4;
+.topGrid {
+    height: 100%;
 }
 
-a {
-    color: #80fffb;
-}
-
-.selectFileWrapper {
-    display: inline;
+.infoPane {
+    overflow-y: scroll;
 }
