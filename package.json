@@ -26,6 +26,6 @@
   },
   "dependencies": {
     "docxtemplater": "^3.14.1",
-    "jzip": "^1.0.0"
+    "jszip": "^3.2.2"
   }
 }

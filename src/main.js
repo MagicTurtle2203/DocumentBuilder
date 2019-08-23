@@ -10,8 +10,8 @@ var core = {
 
 var answerDiv = document.getElementById("questionAnswer");
 
-// var JSZip = require('jszip');
-// var Docxtemplater = require('docxtemplater');
+var JSZip = require('jszip');
+var Docxtemplater = require('docxtemplater');
 
 var fs = require('fs');
 var path = require('path');
@@ -265,27 +265,31 @@ function yesNoButtonHandler() {
 	var yesOrNo = $(window.event.target)[0].outerText;
 	var questionID = $(window.event.target)[0].name;
 
-	$('.questionNoButton').toggleClass('questionButtonSelected');
-	$('.questionYesButton').toggleClass('questionButtonSelected');
+	if( (yesOrNo === "Yes" && !core.answers[questionID]) || (yesOrNo === "No" && core.answers[questionID]) ){
+		$('.questionNoButton').toggleClass('questionButtonSelected');
+		$('.questionYesButton').toggleClass('questionButtonSelected');
+	}
 
 	if(yesOrNo == "Yes") { // The button pressed was a "Yes" button
-		core.answers[questionID] = true; // Set the current question to true
-		$('#submitButton').remove(); // Remove the submit button for now
+		if(!core.answers[questionID]) { // Continue only if "Yes" button wasn't already pressed
+			core.answers[questionID] = true; // Set the current question to true
+			$('#submitButton').remove(); // Remove the submit button for now
 
-		// For each question/input in this section that is not a yes/no question, create and append it
-		for(i in core.sections[core.currentSectionIndex].sectionInputs) {
-			var sectionInput = core.sections[core.currentSectionIndex].sectionInputs[i];
-			if(sectionInput.inputType == "singleLineText") {
-				addSingleLineInput(sectionInput.questionID, sectionInput.inputLabel);
-			} else if(sectionInput.inputType == "textBoxInput") {
-				addTextBoxInput(sectionInput.questionID, sectionInput.inputLabel, sectionInput.defaultText);
-			} else if(sectionInput.inputType == "singleChoiceOption") {
-				addSingleChoiceOption(sectionInput.questionID, sectionInput.inputLabel, sectionInput.radioOptions);
+			// For each question/input in this section that is not a yes/no question, create and append it
+			for(i in core.sections[core.currentSectionIndex].sectionInputs) {
+				var sectionInput = core.sections[core.currentSectionIndex].sectionInputs[i];
+				if(sectionInput.inputType == "singleLineText") {
+					addSingleLineInput(sectionInput.questionID, sectionInput.inputLabel);
+				} else if(sectionInput.inputType == "textBoxInput") {
+					addTextBoxInput(sectionInput.questionID, sectionInput.inputLabel, sectionInput.defaultText);
+				} else if(sectionInput.inputType == "singleChoiceOption") {
+					addSingleChoiceOption(sectionInput.questionID, sectionInput.inputLabel, sectionInput.radioOptions);
+				}
 			}
-		}
 
-		// Re-add the submit button
-		addSubmitButton();
+			// Re-add the submit button
+			addSubmitButton();
+		}
 
 	} else {
 		core.answers[questionID] = false;
