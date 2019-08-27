@@ -135,7 +135,7 @@ function addSingleLineInput(questionID, questionLabel) {
 	button.onclick = infoButtonHandler;
 
 	label.appendChild(button);
-	label.className = "singleLineInputFieldLabel";
+	label.className = "singleLineInputFieldLabel w-100";
 	label.id = questionID + "_label";
 	label.innerHTML += questionLabel;
 	answerDiv.appendChild(label);
@@ -163,7 +163,7 @@ function addTextBoxInput(questionID, questionLabel, defaultText) {
 	button.onclick = infoButtonHandler;
 
 	label.appendChild(button);
-	label.className = "textBoxFieldInputLabel";
+	label.className = "textBoxFieldInputLabel w-100";
 	label.id = questionID + "_label";
 	label.innerHTML += questionLabel;
 	answerDiv.appendChild(label);
@@ -171,7 +171,7 @@ function addTextBoxInput(questionID, questionLabel, defaultText) {
 	var input = document.createElement("textarea");
 	input.type = "text";
 	input.wrap = "soft";
-	input.className = "textBoxFieldInput"; // set the CSS class
+	input.className = "textBoxFieldInput w-100"; // set the CSS class
 	input.id = questionID;
 
 	if(core.answers[questionID] != undefined && core.answers[questionID] != "") {
@@ -181,45 +181,46 @@ function addTextBoxInput(questionID, questionLabel, defaultText) {
 	}
 
 	answerDiv.appendChild(input); // put it into the DOM
+	resizeTextarea();
+}
+
+function resizeTextarea() {
+	$('textarea').each(function () {
+		this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+	  }).on('input', function () {
+		this.style.height = 'auto';
+		this.style.height = (this.scrollHeight) + 'px';
+	  });
 }
 
 // This function creates and appends a yes/no question that will toggle the section
 function addyesNoQuestion(questionID, questionLabel) {
 	var label = document.createElement("div");
-	var button = document.createElement("button");
-	button.id = questionID + "Button";
-	button.name = questionID;
-	button.className = "infoButton";
-	button.innerHTML = "<i class='step fi-info infoIcon' onclick='infoButtonHandler();'></i>";
-	button.onclick = infoButtonHandler;
-
-	label.appendChild(button);
 	label.className = "textBoxFieldInputLabel";
 	label.innerHTML += questionLabel;
-	answerDiv.appendChild(label);
+
+	var buttonDiv = document.createElement("div");
+	buttonDiv.className = "my-3 w-100";
 
 	var yesButton = document.createElement("button");
 	yesButton.id = questionID + "_YesButton";
 	yesButton.name = questionID;
-	yesButton.className = "questionYesButton";
+	yesButton.className = "questionYesButton btn btn-success";
 	yesButton.innerHTML = "Yes";
 	yesButton.onclick = yesNoButtonHandler;
 
 	var noButton = document.createElement("button");
 	noButton.id = questionID + "_NoButton";
 	noButton.name = questionID;
-	noButton.className = "questionNoButton";
+	noButton.className = "questionNoButton btn btn-danger";
 	noButton.innerHTML = "No";
 	noButton.onclick = yesNoButtonHandler;
 
-	if(core.answers[questionID]) {
-		yesButton.className += " questionButtonSelected";
-	} else {
-		noButton.className += " questionButtonSelected";
-	}
+	buttonDiv.appendChild(noButton); 
+	buttonDiv.appendChild(yesButton);
 
-	answerDiv.appendChild(noButton); // put it into the DOM
-	answerDiv.appendChild(yesButton); // put it into the DOM
+	answerDiv.appendChild(label);
+	answerDiv.appendChild(buttonDiv);
 }
 
 // This function creates a multiple choice question that only allows for one selected answer
@@ -233,13 +234,14 @@ function addSingleChoiceOption(questionID, questionLabel, options) {
 	button.onclick = infoButtonHandler;
 
 	label.appendChild(button);
-	label.className = "singleLineInputFieldLabel";
+	label.className = "singleLineInputFieldLabel w-100";
 	label.id = questionID + "_label";
 	label.innerHTML += questionLabel;
 	answerDiv.appendChild(label);
 
 	var form = document.createElement("form");
 	form.id = questionID;
+	form.className = "radioInputField";
 	for(i in options) {
 		var wrapper = document.createElement("div");
 		wrapper.className = "radioOptionWrapper";
@@ -251,10 +253,8 @@ function addSingleChoiceOption(questionID, questionLabel, options) {
 		radioOption.className = "radioOption";
 		wrapper.appendChild(radioOption);
 
-		var radioLabel = document.createElement("div");
-		radioLabel.className = "radioOptionLabel";
-		radioLabel.innerHTML = options[i];
-		wrapper.appendChild(radioLabel);
+		wrapper.appendChild(document.createTextNode(options[i]));
+
 		form.appendChild(wrapper);
 	}
 
@@ -265,12 +265,12 @@ function yesNoButtonHandler() {
 	var yesOrNo = $(window.event.target)[0].outerText;
 	var questionID = $(window.event.target)[0].name;
 
-	if( (yesOrNo === "Yes" && !core.answers[questionID]) || (yesOrNo === "No" && core.answers[questionID]) ){
-		$('.questionNoButton').toggleClass('questionButtonSelected');
-		$('.questionYesButton').toggleClass('questionButtonSelected');
-	}
+	// if( (yesOrNo.toLowerCase() === "yes" && !core.answers[questionID]) || (yesOrNo.toLowerCase() === "no" && core.answers[questionID]) ){
+	// 	$('.questionNoButton').toggleClass('questionButtonSelected');
+	// 	$('.questionYesButton').toggleClass('questionButtonSelected');
+	// }
 
-	if(yesOrNo == "Yes") { // The button pressed was a "Yes" button
+	if(yesOrNo.toLowerCase() == "yes") { // The button pressed was a "Yes" button
 		if(!core.answers[questionID]) { // Continue only if "Yes" button wasn't already pressed
 			core.answers[questionID] = true; // Set the current question to true
 			$('#submitButton').remove(); // Remove the submit button for now
@@ -349,14 +349,13 @@ function progressButtonHandler() {
 
 	if(core.currentSectionIndex == core.sections.length-1) {
 		$('#submitButton').html("Submit and Make Document");
-		$('#submitButton').width("200px");
 	}
 }
 
 function addSubmitButton() {
 	var button = document.createElement("button");
 	button.id = "submitButton";
-	button.className = "submitButton";
+	button.className = "submitButton w-100 mt-3 btn btn-primary";
 	button.innerHTML = "Save and Continue";
 	button.addEventListener("click", submitButtonHandler);
 	answerDiv.appendChild(button);
@@ -381,8 +380,8 @@ function submitButtonHandler() {
 	} else if(core.currentSectionIndex == core.sections.length-1) {
 		// We are on the LAST section
 		loadSection(core.currentSectionIndex, answerDiv);
-		$('.selected').toggleClass('selected');
-		$('#'+core.currentSectionIndex).toggleClass('selected');
+		$('.active').toggleClass('active');
+		$('#'+core.currentSectionIndex).toggleClass('active');
 
 		$('#submitButton').html("Submit and Make Document");
 		$('#submitButton').width("200px");
@@ -390,8 +389,8 @@ function submitButtonHandler() {
 		// change the button text
 	} else {
 		loadSection(core.currentSectionIndex, answerDiv);
-		$('.selected').toggleClass('selected');
-		$('#'+core.currentSectionIndex).toggleClass('selected');
+		$('.active').toggleClass('active');
+		$('#'+core.currentSectionIndex).toggleClass('active');
 	}
 }
 

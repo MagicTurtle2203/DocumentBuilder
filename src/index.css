@@ -6,11 +6,10 @@ body {
     overflow: hidden;
 }
 
-.landingPanel {
-    position: absolute;
+#landingPanel {
     width: 100%;
     height: 100%;
-    background: #FFFFFF;
+    background-color: #FFFFFF;
 }
 
 .landingIcon {
@@ -33,6 +32,52 @@ body {
     height: 100%;
 }
 
+.progressButton {
+    user-select: none;
+}
+
+#progressContent {
+    box-shadow: 5px 0px 5px #f1f1f1;
+}
+
 .infoPane {
     overflow-y: scroll;
+}
+
+#questionText {
+    font-size: 120%;
+    margin-bottom: 15px;
+}
+
+#questionAnswer {
+    border-top: 1px solid black;
+    padding-top: 25px;
+}
+
+textarea {
+    resize: both;
+}
+
+/* .singleLineInputFieldLabel {
+    margin-top: 0.75rem;
+} */
+
+.singleLineInputField {
+    margin-bottom: 0.75rem;
+}
+
+/* .textBoxFieldInputLabel {
+    margin-top: 0.75rem;
+} */
+
+.textBoxFieldInput {
+    margin-bottom: 0.75rem;
+}
+
+.radioInputField {
+    margin-bottom: 0.75rem;
+}
+
+#submitButton {
+    height: 40px;
 }
