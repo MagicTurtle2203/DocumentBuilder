@@ -127,14 +127,15 @@ function searchWarrantScript() {
 // This function creates and appends a single input line with a label
 function addSingleLineInput(questionID, questionLabel) {
 	var label = document.createElement("div");
-	var button = document.createElement("button");
+	
+	/* var button = document.createElement("button");
 	button.id = questionID + "Button";
 	button.name = questionID;
 	button.className = "infoButton";
 	button.innerHTML = "<i class='step fi-info infoIcon' onclick='infoButtonHandler();'></i>";
 	button.onclick = infoButtonHandler;
+	label.appendChild(button); */
 
-	label.appendChild(button);
 	label.className = "singleLineInputFieldLabel w-100";
 	label.id = questionID + "_label";
 	label.innerHTML += questionLabel;
@@ -155,14 +156,15 @@ function addSingleLineInput(questionID, questionLabel) {
 // This function creates and appends a text box input with default text if given
 function addTextBoxInput(questionID, questionLabel, defaultText) {
 	var label = document.createElement("div");
-	var button = document.createElement("button");
+	
+	/* var button = document.createElement("button");
 	button.id = questionID + "Button";
 	button.name = questionID;
 	button.className = "infoButton";
 	button.innerHTML = "<i class='step fi-info infoIcon' onclick='infoButtonHandler();'></i>";
 	button.onclick = infoButtonHandler;
+	label.appendChild(button); */
 
-	label.appendChild(button);
 	label.className = "textBoxFieldInputLabel w-100";
 	label.id = questionID + "_label";
 	label.innerHTML += questionLabel;
@@ -223,14 +225,15 @@ function addyesNoQuestion(questionID, questionLabel) {
 // This function creates a multiple choice question that only allows for one selected answer
 function addSingleChoiceOption(questionID, questionLabel, options) {
 	var label = document.createElement("div");
-	var button = document.createElement("button");
+	
+	/* var button = document.createElement("button");
 	button.id = questionID + "Button";
 	button.name = questionID;
 	button.className = "infoButton";
 	button.innerHTML = "<i class='step fi-info infoIcon' onclick='infoButtonHandler();'></i>";
-	button.onclick = infoButtonHandler;
+	button.onclick = infoButtonHandler; 
+	label.appendChild(button); */
 
-	label.appendChild(button);
 	label.className = "singleLineInputFieldLabel w-100";
 	label.id = questionID + "_label";
 	label.innerHTML += questionLabel;
