@@ -592,11 +592,11 @@ function loadHelpPane() {
 		} else if(sectionHelp[i].helpType == "helpInsert") {
 			// Create and append a button along with the text it inserts
 			var insertWrapper = document.createElement("div");
-			insertWrapper.className = "insertWrapper";
+			insertWrapper.className = "insertWrapper pb-3";
 
 			var insertButton = document.createElement("button");
 			insertButton.id = "insertButton";
-			insertButton.className = "insertButton";
+			insertButton.className = "btn";
 			insertButton.innerHTML = "Insert";
 			insertButton.customContent = sectionHelp[i].helpContent;
 			insertButton.targetQuestion = sectionHelp[i].targetQuestionID;
@@ -622,6 +622,7 @@ function insertButtonHandler() {
 	console.log(questionID)
 
 	$('#' + questionID).val($('#' + questionID).val() + '\n' + insertText);
+	resizeTextarea();
 }
 
 $(document).delegate('.textBoxFieldInput', 'keydown', function(e) {
