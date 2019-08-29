@@ -197,19 +197,19 @@ function addyesNoQuestion(questionID, questionLabel) {
 	label.innerHTML += questionLabel;
 
 	var buttonDiv = document.createElement("div");
-	buttonDiv.className = "my-3 w-100";
+	buttonDiv.className = "my-3 btn-group";
 
 	var yesButton = document.createElement("button");
 	yesButton.id = questionID + "_YesButton";
 	yesButton.name = questionID;
-	yesButton.className = "questionYesButton btn btn-success";
+	yesButton.className = "questionYesButton btn btn-secondary";
 	yesButton.innerHTML = "Yes";
 	yesButton.onclick = yesNoButtonHandler;
 
 	var noButton = document.createElement("button");
 	noButton.id = questionID + "_NoButton";
 	noButton.name = questionID;
-	noButton.className = "questionNoButton btn btn-danger";
+	noButton.className = "questionNoButton btn btn-secondary active";
 	noButton.innerHTML = "No";
 	noButton.onclick = yesNoButtonHandler;
 
@@ -262,10 +262,10 @@ function yesNoButtonHandler() {
 	var yesOrNo = $(window.event.target)[0].outerText;
 	var questionID = $(window.event.target)[0].name;
 
-	// if( (yesOrNo.toLowerCase() === "yes" && !core.answers[questionID]) || (yesOrNo.toLowerCase() === "no" && core.answers[questionID]) ){
-	// 	$('.questionNoButton').toggleClass('questionButtonSelected');
-	// 	$('.questionYesButton').toggleClass('questionButtonSelected');
-	// }
+	if( (yesOrNo.toLowerCase() === "yes" && !core.answers[questionID]) || (yesOrNo.toLowerCase() === "no" && core.answers[questionID]) ){
+		$('.questionNoButton').toggleClass('active');
+		$('.questionYesButton').toggleClass('active');
+	}
 
 	if(yesOrNo.toLowerCase() == "yes") { // The button pressed was a "Yes" button
 		if(!core.answers[questionID]) { // Continue only if "Yes" button wasn't already pressed

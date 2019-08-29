@@ -2790,14 +2790,14 @@ fieldset:disabled a.btn {
 }
 
 .btn-secondary {
-  background-color: #ff4081;
+  background-color: #40c4ff;
   color: white;
 }
 .btn-secondary:active, .btn-secondary:focus, .btn-secondary:hover {
   color: white;
 }
 .btn-secondary.active, .btn-secondary:active {
-  background-color: #f50057;
+  background-color: #00b0ff;
 }
 .btn-secondary.disabled, .btn-secondary:disabled {
   background-color: rgba(0, 0, 0, 0.12);
