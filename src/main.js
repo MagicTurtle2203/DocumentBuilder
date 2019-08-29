@@ -384,7 +384,6 @@ function submitButtonHandler() {
 		$('#'+core.currentSectionIndex).toggleClass('active');
 
 		$('#submitButton').html("Submit and Make Document");
-		$('#submitButton').width("200px");
 
 		// change the button text
 	} else {
@@ -561,9 +560,9 @@ function makeDocument() {
 		buttonLabel: "Save Document"
 	});
 
-	if(savePath != undefined) {
+	if(savePath.filePath != undefined) {
 		var buf = doc.getZip().generate({type: 'nodebuffer'});
-		fs.writeFileSync(savePath, buf);
+		fs.writeFileSync(savePath.filePath, buf);
 	}
 }
 
