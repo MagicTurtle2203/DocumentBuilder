@@ -4,6 +4,7 @@ html,body {
 
 body {
     overflow: hidden;
+    background-color: #f5f5f5;
 }
 
 #landingPanel {
@@ -28,7 +29,11 @@ body {
     background-color: #eeeeee;
 }
 
-.topGrid {
+#topGrid {
+    height: 100%;
+}
+
+.mainPane {
     height: 100%;
 }
 
@@ -52,23 +57,17 @@ body {
 #questionAnswer {
     border-top: 1px solid black;
     padding-top: 25px;
+    overflow-y: auto;
+    height: 94%;
 }
 
 textarea {
     resize: both;
 }
 
-/* .singleLineInputFieldLabel {
-    margin-top: 0.75rem;
-} */
-
 .singleLineInputField {
     margin-bottom: 0.75rem;
 }
-
-/* .textBoxFieldInputLabel {
-    margin-top: 0.75rem;
-} */
 
 .textBoxFieldInput {
     margin-bottom: 0.75rem;
@@ -78,6 +77,11 @@ textarea {
     margin-bottom: 0.75rem;
 }
 
+textarea {
+    max-height: 500px;
+}
+
 #submitButton {
     height: 40px;
+    margin-bottom: 50px;
 }

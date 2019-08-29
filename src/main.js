@@ -186,7 +186,7 @@ function addTextBoxInput(questionID, questionLabel, defaultText) {
 
 function resizeTextarea() {
 	$('textarea').each(function () {
-		this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+		this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:auto;');
 	  }).on('input', function () {
 		this.style.height = 'auto';
 		this.style.height = (this.scrollHeight) + 'px';
