@@ -33,7 +33,7 @@ function startProgramHandler() {
 var configPath = "";
 var templatePath = "";
 function selectConfigHandler() {
-	var dialogPaths = dialog.showOpenDialog({
+	var dialogPaths = dialog.showOpenDialogSync({
 		title: "Select Configuration File (sections.json)",
 		buttonLabel: "Use File",
 		properties: ["openFile"],
@@ -54,7 +54,7 @@ function selectConfigHandler() {
 }
 
 function selectTemplateHandler() {
-	var dialogPaths = dialog.showOpenDialog({
+	var dialogPaths = dialog.showOpenDialogSync({
 		title: "Select Template File (docx)",
 		buttonLabel: "Use File",
 		properties: ["openFile"],
