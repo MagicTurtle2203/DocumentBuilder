@@ -212,9 +212,15 @@ function addyesNoQuestion(questionID, questionLabel) {
 	var noButton = document.createElement("button");
 	noButton.id = questionID + "_NoButton";
 	noButton.name = questionID;
-	noButton.className = "questionNoButton btn btn-secondary active";
+	noButton.className = "questionNoButton btn btn-secondary";
 	noButton.innerHTML = "No";
 	noButton.onclick = yesNoButtonHandler;
+
+	if(core.answers[questionID]) {
+		yesButton.className += " active";
+	} else {
+		noButton.className += " active";
+	}
 
 	buttonDiv.appendChild(noButton); 
 	buttonDiv.appendChild(yesButton);
