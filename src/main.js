@@ -200,6 +200,7 @@ function addyesNoQuestion(questionID, questionLabel) {
 
 	var buttonDiv = document.createElement("div");
 	buttonDiv.className = "my-3 btn-group";
+	buttonDiv.id = questionID + "_Group";
 
 	var yesButton = document.createElement("button");
 	yesButton.id = questionID + "_YesButton";
@@ -266,9 +267,10 @@ function yesNoButtonHandler() {
 	var questionID = $(window.event.target)[0].name;
 
 	if( (yesOrNo.toLowerCase() === "yes" && !core.answers[questionID]) || (yesOrNo.toLowerCase() === "no" && core.answers[questionID]) ){
-		$('.questionNoButton').toggleClass('active');
-		$('.questionYesButton').toggleClass('active');
+		$(`#${questionID}_Group`).children('button').each(function() {$(this).toggleClass('active')});
 	}
+
+	var sectionInputs = core.sections[core.currentSectionIndex].sectionInputs;
 
 	if(yesOrNo.toLowerCase() == "yes") { // The button pressed was a "Yes" button
 		if(!core.answers[questionID]) { // Continue only if "Yes" button wasn't already pressed
@@ -276,14 +278,21 @@ function yesNoButtonHandler() {
 			$('#submitButton').remove(); // Remove the submit button for now
 
 			// For each question/input in this section that is not a yes/no question, create and append it
-			for(i in core.sections[core.currentSectionIndex].sectionInputs) {
-				var sectionInput = core.sections[core.currentSectionIndex].sectionInputs[i];
-				if(sectionInput.inputType == "singleLineText") {
-					addSingleLineInput(sectionInput.questionID, sectionInput.inputLabel);
-				} else if(sectionInput.inputType == "textBoxInput") {
-					addTextBoxInput(sectionInput.questionID, sectionInput.inputLabel, sectionInput.defaultText);
-				} else if(sectionInput.inputType == "singleChoiceOption") {
-					addSingleChoiceOption(sectionInput.questionID, sectionInput.inputLabel, sectionInput.radioOptions);
+			var yesNoIndex = sectionInputs.findIndex(element => element.questionID == questionID);
+
+			for(var n = yesNoIndex+1; n < sectionInputs.length; n++) {
+				var sectionInput = sectionInputs[n];
+				
+				if(sectionInput.questionID != questionID) {
+					if(sectionInput.inputType == "yesNoQuestion") {
+						addyesNoQuestion(sectionInput.questionID, sectionInput.inputLabel);
+					} else if(sectionInput.inputType == "singleLineText") {
+						addSingleLineInput(sectionInput.questionID, sectionInput.inputLabel);
+					} else if(sectionInput.inputType == "textBoxInput") {
+						addTextBoxInput(sectionInput.questionID, sectionInput.inputLabel, sectionInput.defaultText);
+					} else if(sectionInput.inputType == "singleChoiceOption") {
+						addSingleChoiceOption(sectionInput.questionID, sectionInput.inputLabel, sectionInput.radioOptions);
+					}
 				}
 			}
 
@@ -294,11 +303,11 @@ function yesNoButtonHandler() {
 	} else {
 		core.answers[questionID] = false;
 
-		for(i in core.sections[core.currentSectionIndex].sectionInputs) {
-			if(i > 0) {
-				var sectionInput = core.sections[core.currentSectionIndex].sectionInputs[i];
+		for(i in sectionInputs) {
+			if(i > sectionInputs.findIndex(element => element.questionID == questionID)) {
+				var sectionInput = sectionInputs[i];
 				$('#' + sectionInput.questionID).remove();
-				$('#' + sectionInput.questionID + "_label").remove();
+				$(`#${sectionInput.questionID}_label`).remove();
 			}
 		}
 	}
