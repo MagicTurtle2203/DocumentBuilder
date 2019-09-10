@@ -569,16 +569,13 @@ function makeDocument() {
 	    throw error;
 	}
 
-	var savePath = dialog.showSaveDialog({
+	dialog.showSaveDialog({
 		title: "Save Document",
 		defaultPath: path.join(require('os').homedir(), 'Desktop/output.docx'),
 		buttonLabel: "Save Document"
+	}).then(function(value) {
+		fs.writeFile(value.filePath, doc.getZip().generate({type: 'nodebuffer'}), (err) => {if (err) throw err;});
 	});
-
-	if(savePath.filePath != undefined) {
-		var buf = doc.getZip().generate({type: 'nodebuffer'});
-		fs.writeFileSync(savePath.filePath, buf);
-	}
 }
 
 function loadHelpPane() {
@@ -625,8 +622,6 @@ function loadHelpPane() {
 			$('#helpPane').append(insertWrapper);
 		}
 	}
-
-
 }
 
 function insertButtonHandler() {
